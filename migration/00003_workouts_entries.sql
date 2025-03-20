@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS workouts_entries (
     duration_seconds INTEGER,
     weight DECIMAL(5, 2),
     notes TEXT,
-    order_index INTEGER NOT NULL
+    order_index INTEGER NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT valid_workout_entry CHECK(

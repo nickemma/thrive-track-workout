@@ -13,7 +13,7 @@ func NewWorkoutHandler() *WorkoutHandler {
 	return &WorkoutHandler{}
 }
 
-// Get the workout
+// HandlerGetWorkoutByID Get the workout
 func (wh *WorkoutHandler) HandlerGetWorkoutByID(w http.ResponseWriter, r *http.Request) {
 	paramsWorkoutId := chi.URLParam(r, "id")
 
@@ -31,7 +31,7 @@ func (wh *WorkoutHandler) HandlerGetWorkoutByID(w http.ResponseWriter, r *http.R
 	fmt.Fprintf(w, "this is the workout id %d\n", workoutId)
 }
 
-// Create a workout
+// HandlerCreateWorkout Create a workout
 func (wh *WorkoutHandler) HandlerCreateWorkout(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Created a workout\n")
 }

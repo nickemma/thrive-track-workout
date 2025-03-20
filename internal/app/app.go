@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/nickemma/internal/api"
 	"github.com/nickemma/internal/store"
+	"github.com/nickemma/migration"
 	"log"
 	"net/http"
 	"os"
@@ -17,13 +18,18 @@ type Application struct {
 }
 
 func NewApplication() (*Application, error) {
-	logger := log.New(os.Stdout, "INFO: ", log.Ldate|log.Ltime)
-
 	// database connections
 	pgDB, err := store.Open()
 	if err != nil {
 		return nil, err
 	}
+	// migrations run and check
+	err = store.MigrateFs(pgDB, migration.FS, ".")
+	if err != nil {
+		panic(err)
+	}
+
+	logger := log.New(os.Stdout, "INFO: ", log.Ldate|log.Ltime)
 	// Store goes here
 
 	// Handlers goes here
